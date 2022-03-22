@@ -26,6 +26,7 @@ void main() {
       () async {
     arrangeNewsServiceReturns3Articles();
     final response = await mockNewsService.getArticles();
+
     expect(response, fakeArticlesList);
   });
 }
