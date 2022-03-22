@@ -29,7 +29,7 @@ void main() {
     });
   }
 
-  createNewsPage() {
+  Widget createNewsPage() {
     return MaterialApp(
       title: "News App",
       home: ChangeNotifierProvider.value(
