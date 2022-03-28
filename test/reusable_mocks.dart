@@ -1,4 +1,4 @@
-import 'package:flutter_testing/model/article.dart';
+import 'package:flutter_testing/src/features/news/domain/article.dart';
 
 class ReusableMocks {
   static final List<Article> fakeArticlesList = [

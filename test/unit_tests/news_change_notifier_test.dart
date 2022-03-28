@@ -1,8 +1,8 @@
+import 'package:flutter_testing/src/features/news/application/news_service.dart';
+import 'package:flutter_testing/src/features/news/data/news_change_notifier.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_testing/provider/news_change_notifier.dart';
-import 'package:flutter_testing/services/news_service.dart';
 
 import '../reusable_mocks.dart';
 

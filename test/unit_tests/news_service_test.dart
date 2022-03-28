@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_testing/services/news_service.dart';
+import 'package:flutter_testing/src/features/news/application/news_service.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../reusable_mocks.dart';
