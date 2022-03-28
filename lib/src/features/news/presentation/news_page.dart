@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_testing/features/articles/presentation/article_page.dart';
 import 'package:provider/provider.dart';
 
 import '../data/news_change_notifier.dart';
+import '../../articles/presentation/article_page.dart';
 
 class NewsPage extends StatefulWidget {
   const NewsPage({Key? key}) : super(key: key);
