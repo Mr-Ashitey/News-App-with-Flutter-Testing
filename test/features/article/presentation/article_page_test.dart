@@ -21,7 +21,7 @@ void main() {
     await tester.tap(find.text("Test 1"));
     await tester.pumpAndSettle();
 
-    expect(find.byType(NewsPage), findsNothing);
+    expect(find.byType(NewsPage), findsOneWidget);
     expect(find.byType(ArticlePage), findsOneWidget);
 
     expect(find.text("Test 1"), findsOneWidget);
