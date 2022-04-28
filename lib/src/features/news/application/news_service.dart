@@ -1,7 +1,7 @@
 // A News service simulating communication with a server
 import 'package:flutter_lorem/flutter_lorem.dart';
 
-import '../domain/article.dart';
+import '../../articles/domain/article.dart';
 
 class NewsService {
   // Simulating a remote database

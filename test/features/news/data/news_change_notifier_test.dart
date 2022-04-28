@@ -1,12 +1,8 @@
-import 'package:flutter_testing/src/features/news/application/news_service.dart';
 import 'package:flutter_testing/src/features/news/data/news_change_notifier.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
-import '../reusable_mocks.dart';
-
-class MockNewsService extends Mock implements NewsService {}
+import '../../../reusable_mocks.dart';
 
 void main() {
   late NewsChangeNotifier sut; //sut = System Under Test
@@ -23,15 +19,10 @@ void main() {
   });
 
   group("getArticles", () {
-    void arrangeNewsServiceReturns3Articles() {
-      when(() => mockNewsService.getArticles())
-          .thenAnswer((_) async => ReusableMocks.fakeArticlesList);
-    }
-
     test(
         "checking that getArticles method has been called once from NewsService",
         () async {
-      arrangeNewsServiceReturns3Articles();
+      ReusableMocks.arrangeNewsServiceReturns3Articles(mockNewsService);
       await sut.getArticles();
       verify(() => mockNewsService.getArticles()).called(1);
     });
@@ -41,7 +32,7 @@ void main() {
     set articles to the ones from the service,
     indicates that data is not being loaded anymore""",
       () async {
-        arrangeNewsServiceReturns3Articles();
+        ReusableMocks.arrangeNewsServiceReturns3Articles(mockNewsService);
         //?---------------------------------------?//
         /* 
             instead of doing the below with await:

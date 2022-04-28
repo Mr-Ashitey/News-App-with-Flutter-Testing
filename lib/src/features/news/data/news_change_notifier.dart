@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '/src/features/news/application/news_service.dart';
 
-import '../domain/article.dart';
+import '../../articles/domain/article.dart';
 
 class NewsChangeNotifier extends ChangeNotifier {
   final NewsService _newsService;
