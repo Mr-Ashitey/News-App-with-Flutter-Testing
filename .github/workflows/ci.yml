@@ -32,16 +32,10 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: Report code coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v1
+      - name: Very Good Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
         with:
-          # path: "./coverage/lcov.info"
-          min_coverage: 95
-
-        # run: genhtml ./coverage/lcov.info -o coverage
-
-      # - name: Open html report of tests
-      #   run: open coverage/index.html
+          min_coverage: 80
 
   build_ios:
     name: Build Flutter (iOS)
