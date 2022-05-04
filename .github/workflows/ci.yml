@@ -29,11 +29,15 @@ jobs:
       - name: Flutter analyze
         run: flutter analyze
 
-      - name: Run tests
+      - name: Run tests with coverage
         run: flutter test --coverage
 
       - name: Generate html report of tests
-        run: genhtml ./coverage/lcov.info -o coverage
+        uses: romeovs/lcov-reporter-action@v0.2.16
+        with:
+          lcov-file: ./coverage/lcov.info
+
+        # run: genhtml ./coverage/lcov.info -o coverage
 
       - name: Open html report of tests
         run: open coverage/index.html
