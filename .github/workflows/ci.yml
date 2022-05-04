@@ -32,8 +32,10 @@ jobs:
       - name: Run tests with coverage
         run: flutter test --coverage
 
-      - name: Code Coverage With Coverde Good Coverage
+      - name: Add Coverde to project
         run: dart pub global activate coverde
+
+      - name: Check test coverage
         run: coverde check 80
       # - name: Very Good Coverage
       #   uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
