@@ -7,8 +7,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  code-analysis-and-testing:
-    name: Code Analysis and Testing
+  code-analysis-and-testing-with-coverage-analysis:
+    name: Code Analysis and Testing With Coverage Analysis
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -20,6 +20,9 @@ jobs:
         with:
           channel: "stable"
 
+      - name: Clean build
+        run: flutter clean
+
       - name: Get pub dependencies
         run: flutter pub get
 
@@ -27,11 +30,17 @@ jobs:
         run: flutter analyze
 
       - name: Run tests
-        run: flutter test
+        run: flutter test --coverage
+
+      - name: Generate html report of tests
+        run: genhtml ./coverage/lcov.info -o coverage
+
+      - name: Open html report of tests
+        run: open coverage/index.html
 
   build_ios:
     name: Build Flutter (iOS)
-    needs: [code-analysis-and-testing] # requires the code-analysis-and-testing to run before the steps run
+    needs: [code-analysis-and-testing-with-coverage-analysis] # requires the code-analysis-and-testing-with-coverage-analysis to run before the steps run
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -53,7 +62,7 @@ jobs:
 
   build_appbundle:
     name: Build Flutter (Android)
-    needs: [code-analysis-and-testing] # requires the code-analysis-and-testing to run before the steps run
+    needs: [code-analysis-and-testing-with-coverage-analysis] # requires the code-analysis-and-testing-with-coverage-analysis to run before the steps run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
