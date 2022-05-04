@@ -5,6 +5,7 @@ on:
   push:
     branches: [main]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   code-analysis-and-testing:
     name: Code Analysis and Testing
@@ -12,6 +13,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        run: echo "This repository has been cloned to the runner"
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v1
@@ -24,7 +26,7 @@ jobs:
       - name: Flutter analyze
         run: flutter analyze
 
-      - name: Flutter test
+      - name: Run tests
         run: flutter test
 
   build_ios:
@@ -68,5 +70,5 @@ jobs:
       - name: Flutter clean
         run: flutter clean
 
-      - name: Flutter build ios
+      - name: Flutter build android
         run: flutter build appbundle
