@@ -65,12 +65,12 @@ jobs:
       - name: Flutter build android
         run: flutter build apk --release
 
-      - name: Create Release for android
+      - name: Create a Release for Android
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{github.run_number}}
-          token: ${{secrets.TOKEN}}
+          token: ${{ secrets.TOKEN }}
 
   build_ios:
     name: Build Flutter (iOS)
@@ -100,9 +100,10 @@ jobs:
           ln -s ../Runner.app             # export all the Runner.app
           cd ..                           
           zip -r app.ipa Payload          # zip it into app.ipa inside the Payload folder
-      - name: Create Release
+
+      - name: Create Release for Ios
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/ios/iphoneos/app.ipa"
           tag: ios.1.0.${{github.run_number}}
-          token: ${{secrets.TOKEN}}
+          token: ${{ secrets.TOKEN }}
