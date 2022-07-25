@@ -37,7 +37,7 @@ jobs:
         run: dart pub global activate coverde
 
       - name: Check test coverage
-        run: coverde check 100
+        run: coverde check 80
       # - name: Very Good Coverage
       #   uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
       #   with:
