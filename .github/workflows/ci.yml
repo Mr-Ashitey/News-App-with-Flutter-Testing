@@ -63,7 +63,7 @@ jobs:
       #   run: flutter clean
 
       - name: Flutter build android
-        run: flutter build apk --release
+        run: flutter build appbundle
 
       - name: Create a Release for Android
         uses: ncipollo/release-action@v1
