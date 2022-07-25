@@ -21,8 +21,8 @@ jobs:
           channel: "stable"
       - run: echo "Using the latest stable version of flutter from subosito"
 
-      - name: Clean build
-        run: flutter clean
+      # - name: Clean build
+      #   run: flutter clean
 
       - name: Get pub dependencies
         run: flutter pub get
@@ -43,46 +43,46 @@ jobs:
       #   with:
       #     min_coverage: 80
 
+  build_android:
+    name: Build Flutter (Android)
+    needs: [code-analysis-and-testing-with-coverage-analysis] # requires the code-analysis-and-testing-with-coverage-analysis to run before the steps run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      # - name: Get pub dependencies
+      #   run: flutter pub get
+
+      # - name: Flutter clean
+      #   run: flutter clean
+
+      - name: Flutter build android
+        run: flutter build apk --release
+
   build_ios:
     name: Build Flutter (iOS)
     needs: [code-analysis-and-testing-with-coverage-analysis] # requires the code-analysis-and-testing-with-coverage-analysis to run before the steps run
     runs-on: macos-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           channel: "stable"
 
-      - name: Get pub dependencies
-        run: flutter pub get
+      # - name: Get pub dependencies
+      #   run: flutter pub get
 
-      - name: Flutter clean
-        run: flutter clean
+      # - name: Flutter clean
+      #   run: flutter clean
 
       - name: Flutter build ios
         run: flutter build ios --no-codesign
-
-  build_appbundle:
-    name: Build Flutter (Android)
-    needs: [code-analysis-and-testing-with-coverage-analysis] # requires the code-analysis-and-testing-with-coverage-analysis to run before the steps run
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-
-      - name: Get pub dependencies
-        run: flutter pub get
-
-      - name: Flutter clean
-        run: flutter clean
-
-      - name: Flutter build android
-        run: flutter build appbundle
