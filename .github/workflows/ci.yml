@@ -78,12 +78,9 @@ jobs:
         with:
           channel: "stable"
 
-      - name: Get pub dependencies
-        run: flutter pub get
-
       - name: Flutter build ios
         run: |
-          flutter build ios --release --no-codesign
+          flutter build ios --no-codesign
           cd build/ios/iphoneos          
           mkdir Payload                  
           cd Payload                     
@@ -94,8 +91,8 @@ jobs:
       - name: Create Release for Ios
         uses: ncipollo/release-action@v1
         with:
-          name: "News App Ios v1.0.${{github.run_number}}"
+          # name: "News App Ios v1.0.${{github.run_number}}"
           artifacts: "build/ios/iphoneos/app.ipa"
           tag: ios.1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
-          removeArtifacts: true
+          # removeArtifacts: true
