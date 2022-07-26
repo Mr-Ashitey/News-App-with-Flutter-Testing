@@ -102,12 +102,25 @@ jobs:
           body: "Release body sample for ios"
           generateReleaseNotes: true
 
-  # check_tags:
-  #   - name: Send mail
-  #     uses: dawidd6/action-send-mail@v3
-  #     with:
   check_tags:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "v1.0.${{github.run_number}}"
-      - run: echo "ios.1.0.${{github.run_number}}"
+    - name: Send mail
+    needs: [build_android,build_ios]
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server address:
+        server_address: smtp.gmail.com
+        # Required mail server port:
+        server_port: 465
+        # Required mail subject:
+        subject: Github Actions job result
+        # Required recipients' addresses:
+        to: madcodein@gmail.com
+        # Required sender full name (address can be skipped):
+        from:
+          Emmanuel Ashitey # <aamarh17@gmail.com>
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
+        # Optional plain body:
+        body: Build job of ${{github.repository}} completed successfully!
+        # Optional carbon copy recipients:
+        cc: aamarh17@gmail.com
