@@ -74,6 +74,7 @@ jobs:
           server_address: mail.quantumgroupgh.com
           # Required mail server port:
           server_port: 25
+          secure: true
           # Optional (recommended): mail server username:
           username: ${{secrets.MAIL_USERNAME}}
           # Optional (recommended) mail server password:
