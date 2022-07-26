@@ -21,8 +21,8 @@ jobs:
           channel: "stable"
       - run: echo "Using the latest stable version of flutter from subosito"
 
-      # - name: Clean build
-      #   run: flutter clean
+      - name: Clean build
+        run: flutter clean
 
       - name: Get pub dependencies
         run: flutter pub get
@@ -56,23 +56,17 @@ jobs:
         with:
           channel: "stable"
 
-      # - name: Get pub dependencies
-      #   run: flutter pub get
-
-      # - name: Flutter clean
-      #   run: flutter clean
-
       - name: Flutter build android
-        run: flutter build appbundle
+        run: flutter build apk
 
       - name: Create a Release for Android
         uses: ncipollo/release-action@v1
         with:
           name: "News App Android v1.0.${{github.run_number}}"
-          removeArtifacts: true
           artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
+          removeArtifacts: true
 
   build_ios:
     name: Build Flutter (iOS)
@@ -86,12 +80,6 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-
-      # - name: Get pub dependencies
-      #   run: flutter pub get
-
-      # - name: Flutter clean
-      #   run: flutter clean
 
       - name: Flutter build ios
         run: |
@@ -107,7 +95,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: "News App Ios v1.0.${{github.run_number}}"
-          removeArtifacts: true
           artifacts: "build/ios/iphoneos/app.ipa"
           tag: ios.1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
+          removeArtifacts: true
