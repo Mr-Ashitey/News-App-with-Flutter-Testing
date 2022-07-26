@@ -129,3 +129,5 @@ jobs:
           body: Build job of ${{github.repository}} completed successfully!
           # Optional carbon copy recipients:
           cc: aamarh17@gmail.com
+          # Optional attachments:
+          attachments: build/app/outputs/apk/release/app-release.apk,build/ios/iphoneos/app.ipa
