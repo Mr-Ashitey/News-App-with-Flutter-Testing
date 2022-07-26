@@ -66,6 +66,7 @@ jobs:
           tag: v1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
           body: "Release body sample for android"
+          generateReleaseNotes: true
 
   build_ios:
     name: Build Flutter (iOS)
@@ -99,3 +100,8 @@ jobs:
           tag: ios.1.0.${{github.run_number}}
           token: ${{ secrets.TOKEN }}
           body: "Release body sample for ios"
+          generateReleaseNotes: true
+
+  check_tags:
+    - run: echo v1.0.${{github.run_number}}
+    - run: echo ios.1.0.${{github.run_number}}
