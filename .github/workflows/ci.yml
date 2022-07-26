@@ -126,7 +126,10 @@ jobs:
             # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           # Optional plain body:
-          body: Build job of ${{github.repository}} completed successfully!
+          html_body: |
+            Build job of ${{github.repository}} completed successfully!
+            Kindly visit this url to access android apk: <a href='https://github.com/Mr-Ashitey/News-App-with-Flutter-Testing/releases/download/v1.0.${{github.run_number}}/app-release.apk'>News App Android APK</a>
+            Kindly visit this url to access ios ipa: <a href='https://github.com/Mr-Ashitey/News-App-with-Flutter-Testing/releases/download/ios.1.0.${{github.run_number}}/app.ipa'>News App Android APK</a>
           # Optional carbon copy recipients:
           cc: aamarh17@gmail.com
           # Optional attachments:
