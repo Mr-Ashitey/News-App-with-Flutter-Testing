@@ -21,9 +21,6 @@ jobs:
           channel: "stable"
       - run: echo "Using the latest stable version of flutter from subosito"
 
-      # - name: Clean build
-      #   run: flutter clean
-
       - name: Get pub dependencies
         run: flutter pub get
 
@@ -83,13 +80,13 @@ jobs:
 
       - name: Flutter build ios
         run: |
-          flutter build ios --no-codesign # build the ios bundle
-          cd build/ios/iphoneos           # change directory to this path
-          mkdir Payload                   # create new folder called Payload
-          cd Payload                      # change directory to this folder
-          ln -s ../Runner.app             # export all the Runner.app
+          flutter build ios --release --no-codesign
+          cd build/ios/iphoneos          
+          mkdir Payload                  
+          cd Payload                     
+          ln -s ../Runner.app            
           cd ..                           
-          zip -r app.ipa Payload          # zip it into app.ipa inside the Payload folder
+          zip -r app.ipa Payload
 
       - name: Create Release for Ios
         uses: ncipollo/release-action@v1
