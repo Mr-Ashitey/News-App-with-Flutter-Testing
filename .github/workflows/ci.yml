@@ -101,7 +101,8 @@ jobs:
           body: "Release body sample for ios"
 
   send_apk_ipa_via_email:
-      needs: [build_android, build_ios]
+    name: Send mail
+    needs: [build_android, build_ios]
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
       with:
