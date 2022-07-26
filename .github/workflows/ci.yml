@@ -68,6 +68,7 @@ jobs:
       - name: Create a Release for Android
         uses: ncipollo/release-action@v1
         with:
+          name: "News App Android v1.0.${{github.run_number}}"
           removeArtifacts: true
           artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{github.run_number}}
@@ -105,6 +106,7 @@ jobs:
       - name: Create Release for Ios
         uses: ncipollo/release-action@v1
         with:
+          name: "News App Ios v1.0.${{github.run_number}}"
           removeArtifacts: true
           artifacts: "build/ios/iphoneos/app.ipa"
           tag: ios.1.0.${{github.run_number}}
