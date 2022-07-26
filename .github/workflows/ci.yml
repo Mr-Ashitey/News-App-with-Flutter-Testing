@@ -73,7 +73,7 @@ jobs:
           # Required mail server address:
           server_address: mail.quantumgroupgh.com
           # Required mail server port:
-          server_port: 25
+          server_port: 993
           # Optional (recommended): mail server username:
           username: ${{secrets.MAIL_USERNAME}}
           # Optional (recommended) mail server password:
@@ -86,7 +86,7 @@ jobs:
           from:
             Emmanuel Ashitey # <aamarh17@gmail.com>
             # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: false
+          secure: true
           # Optional plain body:
           # Kindly visit this url to access ios ipa: <a href='https://github.com/Mr-Ashitey/News-App-with-Flutter-Testing/releases/download/ios.1.0.${{github.run_number}}/app.ipa'>News App IOS IPA</a>
           # Kindly visit this url to access android apk: <a href='https://github.com/Mr-Ashitey/News-App-with-Flutter-Testing/releases/download/v1.0.${{github.run_number}}/app-release.apk'>News App Android APK</a><br>
