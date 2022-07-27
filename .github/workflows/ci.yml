@@ -42,8 +42,13 @@ jobs:
     strategy:
       matrix:
         target: [Android, Ios]
-        build-target: [apk --release, ios --no-codesign]
-        os: [ubuntu-latest, macos-latest]
+        include:
+          - target: Android
+            build-target: apk --release
+            os: ubuntu-latest
+          - target: Ios
+            build-target: ios --no-codesign
+            os: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
