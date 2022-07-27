@@ -82,6 +82,6 @@ jobs:
         with:
           name: "News App ${{ matrix.target }} v1.0.${{github.run_number}}"
           artifacts: ${{ matrix.artifacts }}
-          tag: ${{ matrix.tags }}
+          tag: ${{ matrix.tag }}
           body: "Release body sample for ${{ matrix.target }}"
           token: ${{ secrets.TOKEN }}
