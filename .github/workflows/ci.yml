@@ -67,8 +67,8 @@ jobs:
       - name: Build for ${{ matrix.target }} platform
         run: flutter build ${{ matrix.build_target }}
 
-      - name: Zip ipa
-        if: matrix.target == 'Ios'
+      - if: matrix.target == 'Ios'
+        name: Zip ipa
         run: |
           cd build/ios/iphoneos          
           mkdir Payload                  
@@ -80,8 +80,43 @@ jobs:
       - name: Create Releases for ${{ matrix.target }}
         uses: ncipollo/release-action@v1
         with:
-          name: "News App ${{ matrix.target }} v1.0.${{github.run_number}}"
+          name: "News App ${{ matrix.target }} ${{ matrix.tag }}
           artifacts: ${{ matrix.artifacts }}
           tag: ${{ matrix.tag }}
           body: "Release body sample for ${{ matrix.target }}"
           token: ${{ secrets.TOKEN }}
+
+      - if: matrix.target =='Android'
+        name: Send android apk via mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          # Required mail server address:
+          server_address: mail.quantumgroupgh.com
+
+          # Required mail server port:
+          server_port: 465
+
+          # Optional (recommended): mail server username:
+          username: ${{secrets.MAIL_USERNAME}}
+          # Optional (recommended) mail server password:
+          password: ${{secrets.MAIL_PASSWORD}}
+
+          # Required mail subject:
+          subject: Apk Build for News App Android Release ${{ matrix.tag }}
+
+          # Required recipients' addresses:
+          to: eashitey@quantumgroupgh.com
+
+          # Required sender full name (address can be skipped):
+          from:
+            Emmanuel Ashitey # <aamarh17@gmail.com>
+            # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
+          html_body: |
+            Build job of ${{ github.repository }} completed successfully!<br>
+         
+          # Optional carbon copy recipients:
+          cc: dpartey@quantumgroupgh.com
+          # Optional attachments:
+          attachments: build/app/outputs/apk/release/app-release.apk
