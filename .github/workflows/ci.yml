@@ -80,7 +80,7 @@ jobs:
       - name: Create Releases for ${{ matrix.target }}
         uses: ncipollo/release-action@v1
         with:
-          name: "News App ${{ matrix.target }} ${{ matrix.tag }}
+          name: "News App ${{ matrix.target }} ${{ matrix.tag }}"
           artifacts: ${{ matrix.artifacts }}
           tag: ${{ matrix.tag }}
           body: "Release body sample for ${{ matrix.target }}"
@@ -115,7 +115,7 @@ jobs:
           # Optional plain body:
           html_body: |
             Build job of ${{ github.repository }} completed successfully!<br>
-         
+
           # Optional carbon copy recipients:
           cc: dpartey@quantumgroupgh.com
           # Optional attachments:
